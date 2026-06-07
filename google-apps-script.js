@@ -60,8 +60,8 @@ function addToSheet(data) {
 
   // Write header row on first use
   if (sheet.getLastRow() === 0) {
-    var header = sheet.getRange(1, 1, 1, 6);
-    header.setValues([['#', 'Timestamp', 'Full Name', 'Email', 'Phone', 'City']]);
+    var header = sheet.getRange(1, 1, 1, 7);
+    header.setValues([['#', 'Timestamp', 'Full Name', 'Email', 'Phone', 'Gender', 'City']]);
     header.setFontWeight('bold');
     header.setBackground('#3e1622');
     header.setFontColor('#d4b896');
@@ -74,10 +74,11 @@ function addToSheet(data) {
     data.fullName  || '',                              // name
     data.email     || '',                              // email
     data.phone     || '',                              // phone
+    data.gender    || '',                              // gender
     data.city      || ''                               // city
   ]);
 
-  sheet.autoResizeColumns(1, 6);
+  sheet.autoResizeColumns(1, 7);
 }
 
 // ── Confirmation email ──────────────────────────────────────────
@@ -210,6 +211,10 @@ function buildEmailHtml(firstName, data) {
 '      <tr>' +
 '        <td style="padding:2px 22px;font-size:12px;color:#a08080;font-family:Helvetica,Arial,sans-serif;">Email</td>' +
 '        <td style="padding:2px 22px;font-size:13px;font-weight:500;color:#3e1622;font-family:Helvetica,Arial,sans-serif;">' + (data.email || '') + '</td>' +
+'      </tr>' +
+'      <tr>' +
+'        <td style="padding:2px 22px;font-size:12px;color:#a08080;font-family:Helvetica,Arial,sans-serif;">Gender</td>' +
+'        <td style="padding:2px 22px;font-size:13px;font-weight:500;color:#3e1622;font-family:Helvetica,Arial,sans-serif;">' + (data.gender || '') + '</td>' +
 '      </tr>' +
 '      <tr>' +
 '        <td style="padding:2px 22px 12px;font-size:12px;color:#a08080;font-family:Helvetica,Arial,sans-serif;">City</td>' +
