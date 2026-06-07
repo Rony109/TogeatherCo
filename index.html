@@ -741,7 +741,7 @@
         <div class="form-group">
           <label for="phone">Phone Number</label>
           <div class="inp-wrap">
-            <input type="tel" id="phone" placeholder="(XXX) XXX-XXXX" required aria-required="true" aria-describedby="ph-err" autocomplete="tel" maxlength="14"/>
+            <input type="tel" id="phone" placeholder="+1 (XXX) XXX-XXXX" required aria-required="true" aria-describedby="ph-err" autocomplete="tel" maxlength="19"/>
             <span class="f-icon" id="phone-icon" aria-hidden="true"></span>
           </div>
           <div class="err" id="ph-err" role="alert">Please enter a valid phone number</div>
@@ -1033,19 +1033,48 @@
   document.addEventListener('click', e => { if(!e.target.closest('.city-wrap')) cd.classList.remove('open'); });
 
   // ── PHONE FORMAT ─────────────────────────────────
+  // Handles two cases:
+  //   1. With explicit country code: user types +1… → formats as +1 (XXX) XXX-XXXX
+  //      Other country codes (+44, +61 …) are kept as +[digits], unformatted.
+  //   2. No country code: 10-digit North American → (XXX) XXX-XXXX
+  // This ensures the country code digit never displaces the last number digit.
   document.getElementById('phone').addEventListener('input', e => {
-    let v = e.target.value.replace(/\D/g,'').slice(0,10);
-    if(v.length >= 7) v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
-    else if(v.length >= 4) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
-    else if(v.length > 0)  v = `(${v}`;
-    e.target.value = v;
+    const raw     = e.target.value;
+    const hasPlus = raw.startsWith('+');
+    let   digits  = raw.replace(/\D/g, '');
+
+    if (hasPlus) {
+      // Cap at 15 digits (ITU-T E.164 max)
+      digits = digits.slice(0, 15);
+
+      if (digits.startsWith('1')) {
+        // +1 North American country code → +1 (NXX) NXX-XXXX
+        const num = digits.slice(1, 11);          // up to 10 number digits
+        let f = '+1';
+        if (num.length > 0) f += ' (' + num.slice(0, 3);
+        if (num.length >= 3) f += ')';
+        if (num.length > 3)  f += ' ' + num.slice(3, 6);
+        if (num.length > 6)  f += '-' + num.slice(6, 10);
+        e.target.value = f;
+      } else {
+        // Other international — show raw digits after +, no forced mask
+        e.target.value = '+' + digits;
+      }
+    } else {
+      // No country code — standard 10-digit North American mask
+      digits = digits.slice(0, 10);
+      if (digits.length >= 7) digits = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+      else if (digits.length >= 4) digits = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+      else if (digits.length > 0)  digits = `(${digits}`;
+      e.target.value = digits;
+    }
   });
 
   // ── VALIDATION ───────────────────────────────────
   const VLD = {
     fullName: v => v.trim().length >= 2,
     email:    v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
-    phone:    v => v.replace(/\D/g,'').length === 10,
+    phone:    v => v.replace(/\D/g,'').length >= 10,
     city:     () => citySel && ch.value !== ''
   };
   const ERR_IDS = {fullName:'fn-err', email:'em-err', phone:'ph-err', city:'cy-err'};

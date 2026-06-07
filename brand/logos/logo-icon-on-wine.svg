@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Togeather Co icon">
+  <!-- Wine background circle (for app icons, profile pictures, favicons) -->
+  <rect width="80" height="80" rx="20" fill="#3e1622"/>
+  <!-- Mark centred on 80×80 canvas -->
+  <circle cx="29" cy="40" r="17"  stroke="#d4b896" stroke-width="2.4" fill="none"/>
+  <circle cx="51" cy="40" r="17"  stroke="#d4b896" stroke-width="2.4" fill="none"/>
+  <circle cx="40" cy="40" r="4.2" fill="#d4b896"/>
+</svg>

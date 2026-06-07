@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 44" fill="none" role="img" aria-label="Togeather Co">
+  <!-- ── Logo mark (2× scale, centred vertically in 44px) ── -->
+  <circle cx="22" cy="22" r="19"  stroke="#d4b896" stroke-width="3.2"/>
+  <circle cx="46" cy="22" r="19"  stroke="#d4b896" stroke-width="3.2"/>
+  <circle cx="34" cy="22" r="4.8" fill="#d4b896"/>
+  <!-- ── Wordmark ── -->
+  <!-- "To" in white -->
+  <text x="80" y="30"
+        font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+        font-size="24" font-weight="700" letter-spacing="-0.3"
+        fill="#ffffff">To</text>
+  <!-- "geather Co" in champagne -->
+  <text x="107" y="30"
+        font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+        font-size="24" font-weight="700" letter-spacing="-0.3"
+        fill="#d4b896">geather Co</text>
+</svg>

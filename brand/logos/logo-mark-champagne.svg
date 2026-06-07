@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 37 25" fill="none" role="img" aria-label="Togeather Co logo mark">
+  <!-- Two overlapping rings symbolising two people connecting -->
+  <circle cx="11" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/>
+  <circle cx="23" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/>
+  <!-- Centre dot — the moment of connection -->
+  <circle cx="17" cy="11" r="2.6" fill="#d4b896"/>
+</svg>

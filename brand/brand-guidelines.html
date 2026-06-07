@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Togeather Co — Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --wine:#3e1622; --wine-mid:#5c2535; --wine-light:#7a3348;
+  --blush:#e8a4a8; --blush-lt:#f5dfe0; --blush-pale:#fdf0f1;
+  --champ:#d4b896; --champ-lt:#efe0cc; --champ-dk:#b8906a;
+  --cream:#fdf6f0; --cream-dk:#f5ede4;
+  --text:#2c1810; --text-mid:#6b4040; --muted:#a08080;
+  --white:#ffffff; --border:#e8d5cc;
+}
+
+/* ── Print setup ──────────────────────────────────────── */
+@media print{
+  @page{ size:A4 portrait; margin:10mm 12mm; }
+  body{ background:#fff !important; }
+  .page{ margin:0 !important; box-shadow:none !important; width:100% !important; }
+  .cover{ min-height:277mm !important; }
+}
+
+/* ── Global ─────────────────────────────────────────────*/
+body{
+  font-family:'Inter',Helvetica,Arial,sans-serif;
+  background:#ede5df; color:var(--text);
+  font-size:13px; line-height:1.55;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+h1,h2,h3,h4{ font-family:'Playfair Display',Georgia,serif; }
+
+/* ── Page card ──────────────────────────────────────────*/
+.page{
+  width:794px; background:var(--white);
+  margin:20px auto; position:relative; overflow:hidden;
+  box-shadow:0 6px 28px rgba(62,22,34,.16);
+  page-break-after:always; page-break-inside:avoid;
+  /* NO min-height — content drives height, preventing blank overflow pages */
+}
+
+/* ── Shared utilities ───────────────────────────────────*/
+.pad   { padding:32px 48px; }
+.pad-t { padding:24px 48px; }
+.row   { display:flex; gap:20px; }
+.col   { flex:1; }
+.lbl{
+  font-size:10px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+}
+.div{ height:1px;background:var(--border);margin:18px 0; }
+.section-hdr{
+  background:var(--wine);padding:22px 48px;
+}
+.section-hdr .tag{
+  font-size:10px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--champ);margin-bottom:5px;
+}
+.section-hdr h2{ font-size:26px;color:var(--white);font-weight:700; }
+.section-hdr h2 em{ color:var(--champ);font-style:italic; }
+
+/* ══ PAGE 1 — COVER ══════════════════════════════════════*/
+.cover{
+  background:linear-gradient(160deg,#200810 0%,#3e1622 35%,#5c2535 65%,#3a1020 100%);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:64px 56px; min-height:1080px;
+}
+.cover h1{
+  font-size:50px;font-weight:700;color:var(--white);
+  line-height:1.1;letter-spacing:-.02em;margin:0;
+}
+.cover h1 em{ color:var(--champ);font-style:italic; }
+.cover-sub{ font-size:14px;color:rgba(255,255,255,.5);margin-top:14px;font-weight:300; }
+.cover-meta{ display:flex;align-items:flex-end;justify-content:space-between; }
+.cover-meta p{ font-size:11px;color:rgba(255,255,255,.3);line-height:1.8; }
+.cover-meta strong{ color:var(--champ);font-weight:500; }
+
+/* ══ PAGE 2 — BRAND STORY ════════════════════════════════*/
+.story-hdr{ background:var(--wine);padding:24px 48px 20px; }
+.story-hdr .tag{ font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--champ);margin-bottom:5px; }
+.story-hdr h2{ font-size:28px;color:var(--white);font-weight:700; }
+.story-hdr h2 em{ color:var(--champ);font-style:italic; }
+.pillars{ display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px; }
+.pillar{ background:var(--cream);border-radius:10px;padding:14px 14px;border:1px solid var(--border); }
+.pillar-icon{ width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--blush-lt),var(--champ-lt));display:flex;align-items:center;justify-content:center;font-size:15px;margin-bottom:10px; }
+.pillar h4{ font-size:13px;color:var(--wine);margin-bottom:5px; }
+.pillar p{ font-size:12px;color:var(--text-mid);line-height:1.6; }
+.p-tag{ padding:4px 12px;border-radius:100px;font-size:11px;font-weight:500;border:1px solid var(--border);color:var(--text-mid);background:var(--white); }
+.personality{ display:flex;flex-wrap:wrap;gap:8px;margin-top:10px; }
+
+/* ══ PAGE 3 — PRIMARY LOGO ═══════════════════════════════*/
+.logo-showcase{
+  background:linear-gradient(135deg,#3e1622 0%,#5c2535 100%);
+  padding:44px 72px;display:flex;align-items:center;justify-content:center;
+}
+.logo-showcase svg{ width:100%;max-width:320px;height:auto; }
+
+/* ══ PAGE 4 — LOGO VARIATIONS ════════════════════════════*/
+.logo-grid{ display:grid;grid-template-columns:repeat(3,1fr);gap:0; }
+.logo-cell{ padding:22px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px; }
+.logo-cell svg{ width:100%;max-width:150px;height:auto; }
+.logo-cell .lbl{ text-align:center; }
+.bg-wine{ background:var(--wine); }
+.bg-cream{ background:var(--cream); }
+.bg-white{ background:var(--white); }
+.bg-dark{ background:#1a0608; }
+
+/* ══ PAGE 5 — DO'S & DON'TS ══════════════════════════════*/
+.dd-grid{ display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+.do-box,.dont-box{ border-radius:10px;overflow:hidden; }
+.dd-hdr{ padding:10px 16px;display:flex;align-items:center;gap:8px; }
+.do-box .dd-hdr{ background:#e8f5ee; }
+.dont-box .dd-hdr{ background:#fef2f2; }
+.dd-hdr span:last-child{ font-size:12px;font-weight:600; }
+.do-box .dd-hdr span:last-child{ color:#2e7d52; }
+.dont-box .dd-hdr span:last-child{ color:#c0392b; }
+.dd-body{ border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;background:var(--white);padding:16px;display:flex;align-items:center;justify-content:center;min-height:110px; }
+.dont-ex{ position:relative;display:flex;align-items:center;justify-content:center; }
+.dont-ex::after{ content:'';position:absolute;inset:-4px;border:2px solid #e55353;border-radius:6px; }
+
+/* ══ PAGE 6 — COLOUR PALETTE ═════════════════════════════*/
+.pal-title{ font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:12px; }
+.sw-row{ display:flex;gap:10px;margin-bottom:20px; }
+.swatch{ flex:1;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(62,22,34,.08); }
+.sw-c{ height:52px; }
+.sw-i{ background:var(--white);padding:10px 12px;border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px; }
+.sw-name{ font-size:11px;font-weight:600;color:var(--wine);margin-bottom:3px; }
+.sw-hex{ font-size:10px;color:var(--muted);font-family:'Courier New',monospace; }
+.sw-codes{ display:flex;gap:4px;margin-top:5px;flex-wrap:wrap; }
+.sw-code{ font-size:9px;color:var(--muted);background:var(--cream);padding:2px 5px;border-radius:3px;font-family:'Courier New',monospace;white-space:nowrap; }
+
+/* ══ PAGE 7 — COLOUR GRADING ═════════════════════════════*/
+.grade-grid{ display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+.grade-card{ border-radius:10px;overflow:hidden;border:1px solid var(--border); }
+.grade-prev{ height:70px;position:relative; }
+.grade-prev-overlay{ position:absolute;inset:0;display:flex;align-items:flex-end;padding:8px; }
+.grade-tag-sm{ background:rgba(62,22,34,.7);color:var(--champ);font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:100px; }
+.grade-info{ background:var(--white);padding:10px 12px; }
+.grade-info h4{ font-size:12px;color:var(--wine);margin-bottom:5px; }
+.grade-info p{ font-size:11px;color:var(--muted);line-height:1.55; }
+.tone-strip{ height:12px;border-radius:4px;margin-bottom:6px; }
+.lr-settings{ margin-top:8px;font-size:10px;color:var(--muted);line-height:1.7; }
+
+/* ══ PAGE 8 — TYPOGRAPHY ═════════════════════════════════*/
+.type-sample{ font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--wine);line-height:1.15;letter-spacing:-.02em; }
+.type-sample em{ color:var(--champ-dk);font-style:italic; }
+.type-row{ display:flex;align-items:baseline;gap:20px;padding:12px 0;border-bottom:1px solid var(--border); }
+.type-meta{ min-width:150px;flex-shrink:0; }
+.type-meta small{ font-size:10px;color:var(--muted); }
+.type-ex{ flex:1; }
+
+/* ══ PAGE 9 — INSTAGRAM ══════════════════════════════════*/
+.ig-grid{ display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+.ig-card{ border-radius:10px;border:1px solid var(--border);overflow:hidden; }
+.ig-prev{ display:flex;align-items:center;justify-content:center;background:var(--cream-dk); }
+.ig-frame{ background:linear-gradient(160deg,var(--wine),#5c2535);border-radius:5px;display:flex;align-items:center;justify-content:center;margin:14px; }
+.ig-info{ background:var(--white);padding:10px 14px; }
+.ig-info h4{ font-size:12px;color:var(--wine);margin-bottom:3px; }
+.ig-info p{ font-size:11px;color:var(--muted);line-height:1.55; }
+.hashtag{ background:var(--cream);border:1px solid var(--border);color:var(--text-mid);padding:3px 10px;border-radius:100px;font-size:11px; }
+.hashtags{ display:flex;flex-wrap:wrap;gap:6px;margin-top:10px; }
+
+/* ══ PAGE 10 — CANVA ════════════════════════════════════*/
+.clr-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:10px; }
+.clr-cell{ background:var(--cream);border-radius:8px;padding:12px;border:1px solid var(--border); }
+.clr-swatch{ width:100%;height:32px;border-radius:5px;margin-bottom:8px; }
+.clr-name{ font-size:10px;font-weight:600;color:var(--wine); }
+.clr-hex{ font-size:10px;font-family:monospace;color:var(--muted); }
+
+/* ── Canva table ─────────────────────────────────────────*/
+.file-table{ width:100%;border-collapse:collapse;font-size:12px; }
+.file-table th{ background:var(--cream);padding:7px 10px;font-weight:600;color:var(--wine);text-align:left; }
+.file-table td{ padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-mid); }
+.file-table td:first-child{ font-family:monospace;font-size:10px; }
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE 1 — COVER ══════════════════════════════════ -->
+<div class="page">
+<div class="cover">
+  <div>
+    <div style="margin-bottom:48px;">
+      <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:60px;height:auto;">
+        <circle cx="11" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/>
+        <circle cx="23" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/>
+        <circle cx="17" cy="11" r="2.6" fill="#d4b896"/>
+      </svg>
+    </div>
+    <h1>Brand<br><em>Identity</em><br>Guidelines</h1>
+    <p class="cover-sub" style="margin-top:16px;">Togeather Co &nbsp;·&nbsp; Visual Identity System</p>
+  </div>
+  <!-- Decorative rings -->
+  <div style="position:absolute;right:60px;top:100px;opacity:.1;pointer-events:none;">
+    <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
+      <circle cx="120" cy="120" r="112" stroke="#d4b896" stroke-width="1"/>
+      <circle cx="120" cy="120" r="76"  stroke="#d4b896" stroke-width="1"/>
+      <circle cx="120" cy="120" r="40"  stroke="#d4b896" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="cover-meta">
+    <div>
+      <p><strong>Version 1.0</strong></p>
+      <p>2025 &nbsp;·&nbsp; Greater Toronto Area</p>
+      <p style="margin-top:6px;">togeatherco@gmail.com</p>
+    </div>
+    <div style="text-align:right;">
+      <p>Confidential &nbsp;·&nbsp; Internal Use Only</p>
+      <p>&copy; 2025 Togeather Co</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══ PAGE 2 — BRAND STORY ════════════════════════════ -->
+<div class="page">
+<div class="story-hdr">
+  <div class="tag">Brand Foundation</div>
+  <h2>Who We <em>Are</em></h2>
+</div>
+<div class="pad">
+
+  <div class="row" style="margin-bottom:18px;">
+    <div class="col">
+      <div class="lbl">Mission</div>
+      <p style="font-size:17px;font-family:'Playfair Display',serif;color:var(--wine);line-height:1.4;font-style:italic;margin-top:6px;">
+        "Help people find genuine,<br>long-term partners — in person."
+      </p>
+    </div>
+    <div class="col" style="padding-left:20px;border-left:1px solid var(--border);">
+      <div class="lbl">What We Do</div>
+      <p style="font-size:12px;color:var(--text-mid);line-height:1.7;margin-top:6px;">
+        Togeather Co produces premium in-person matchmaking events — rooftop mixers, curated dinners, and social soirées — for professionals in the Greater Toronto Area. We are not a dating app. We are an experience designed to make meaningful connection feel effortless.
+      </p>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="lbl" style="margin-bottom:12px;">Brand Pillars</div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">✦</div>
+      <h4>Premium</h4>
+      <p>Every touchpoint communicates quality without arrogance.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">◈</div>
+      <h4>Authentic</h4>
+      <p>Real people, real conversations. We never manipulate or manufacture urgency.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">❋</div>
+      <h4>Intimate</h4>
+      <p>Small, curated gatherings. Depth of connection over scale.</p>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="row">
+    <div class="col">
+      <div class="lbl">Brand Personality</div>
+      <div class="personality">
+        <span class="p-tag">Sophisticated</span><span class="p-tag">Warm</span>
+        <span class="p-tag">Trustworthy</span><span class="p-tag">Romantic</span>
+        <span class="p-tag">Confident</span><span class="p-tag">Intentional</span>
+        <span class="p-tag">Exclusive</span><span class="p-tag">Genuine</span>
+      </div>
+    </div>
+    <div class="col" style="padding-left:20px;border-left:1px solid var(--border);">
+      <div class="lbl">Tone of Voice</div>
+      <table style="width:100%;margin-top:8px;font-size:12px;">
+        <tr><td style="color:var(--champ-dk);font-weight:600;padding:3px 0;width:80px;">We are</td><td style="color:var(--text-mid);">Warm, direct, elegant, understated</td></tr>
+        <tr><td style="color:var(--muted);padding:3px 0;">We are not</td><td style="color:var(--muted);">Pushy, cliché, overly casual, corporate</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 3 — PRIMARY LOGO ═══════════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Logo System</div><h2>Primary Logo</h2></div>
+
+<!-- Dark bg showcase -->
+<div class="logo-showcase">
+  <svg viewBox="0 0 256 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="22" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+    <circle cx="46" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+    <circle cx="34" cy="22" r="4.8" fill="#d4b896"/>
+    <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#fff">To</text>
+    <text x="107" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#d4b896">geather Co</text>
+  </svg>
+</div>
+
+<div class="pad-t">
+  <!-- Light bg showcase -->
+  <div style="background:var(--cream);border-radius:10px;padding:28px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;border:1px solid var(--border);">
+    <svg viewBox="0 0 256 44" fill="none" style="max-width:260px;width:100%;">
+      <circle cx="22" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+      <circle cx="46" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+      <circle cx="34" cy="22" r="4.8" fill="#3e1622"/>
+      <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#3e1622">To</text>
+      <text x="107" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#b8906a">geather Co</text>
+    </svg>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="lbl">Logo Mark</div>
+      <p style="font-size:12px;color:var(--text-mid);margin-top:6px;line-height:1.65;">Two overlapping rings represent two individuals. The centre dot marks the exact point of connection — the moment two people meet.</p>
+    </div>
+    <div class="col">
+      <div class="lbl">Wordmark</div>
+      <p style="font-size:12px;color:var(--text-mid);margin-top:6px;line-height:1.65;"><strong style="color:var(--wine);">"To"</strong> anchors the name in white or wine. <strong style="color:var(--champ-dk);">"geather Co"</strong> carries the champagne accent, conveying warmth and togetherness.</p>
+    </div>
+    <div class="col">
+      <div class="lbl">Clear Space</div>
+      <p style="font-size:12px;color:var(--text-mid);margin-top:6px;line-height:1.65;">Maintain minimum clear space equal to the height of the logo mark on all four sides. Never crowd the logo.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══ PAGE 4 — LOGO VARIATIONS ══════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Logo System</div><h2>Logo Variations</h2></div>
+<div class="logo-grid">
+
+  <div class="logo-cell bg-dark">
+    <svg viewBox="0 0 256 44" fill="none" style="width:170px;">
+      <circle cx="22" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+      <circle cx="46" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+      <circle cx="34" cy="22" r="4.8" fill="#d4b896"/>
+      <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#fff">To</text>
+      <text x="107" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#d4b896">geather Co</text>
+    </svg>
+    <div class="lbl" style="color:rgba(255,255,255,.4);">Horizontal · Dark BG</div>
+  </div>
+
+  <div class="logo-cell bg-cream">
+    <svg viewBox="0 0 256 44" fill="none" style="width:170px;">
+      <circle cx="22" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+      <circle cx="46" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+      <circle cx="34" cy="22" r="4.8" fill="#3e1622"/>
+      <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#3e1622">To</text>
+      <text x="107" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#b8906a">geather Co</text>
+    </svg>
+    <div class="lbl">Horizontal · Light BG</div>
+  </div>
+
+  <div class="logo-cell bg-wine">
+    <svg viewBox="0 0 120 82" fill="none" style="width:90px;">
+      <circle cx="43" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+      <circle cx="77" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+      <circle cx="60" cy="22" r="4.8" fill="#d4b896"/>
+      <text x="60" y="58" font-family="Georgia,serif" font-size="18" font-weight="700" text-anchor="middle" fill="#fff">To</text>
+      <text x="60" y="78" font-family="Georgia,serif" font-size="18" font-weight="700" text-anchor="middle" fill="#d4b896">geather Co</text>
+    </svg>
+    <div class="lbl" style="color:rgba(255,255,255,.4);">Stacked · Wine BG</div>
+  </div>
+
+  <div class="logo-cell bg-dark">
+    <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:60px;">
+      <circle cx="11" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/>
+      <circle cx="23" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/>
+      <circle cx="17" cy="11" r="2.6" fill="#d4b896"/>
+    </svg>
+    <div class="lbl" style="color:rgba(255,255,255,.4);">Mark · Champagne</div>
+  </div>
+
+  <div class="logo-cell bg-cream">
+    <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:60px;">
+      <circle cx="11" cy="11" r="9.5" stroke="#3e1622" stroke-width="1.8"/>
+      <circle cx="23" cy="11" r="9.5" stroke="#3e1622" stroke-width="1.8"/>
+      <circle cx="17" cy="11" r="2.6" fill="#3e1622"/>
+    </svg>
+    <div class="lbl">Mark · Wine</div>
+  </div>
+
+  <div class="logo-cell bg-wine">
+    <svg viewBox="0 0 80 80" style="width:60px;height:60px;">
+      <rect width="80" height="80" rx="18" fill="#5c2535"/>
+      <circle cx="29" cy="40" r="17" stroke="#d4b896" stroke-width="2.4" fill="none"/>
+      <circle cx="51" cy="40" r="17" stroke="#d4b896" stroke-width="2.4" fill="none"/>
+      <circle cx="40" cy="40" r="4.2" fill="#d4b896"/>
+    </svg>
+    <div class="lbl" style="color:rgba(255,255,255,.4);">App / Profile Icon</div>
+  </div>
+
+  <div class="logo-cell bg-cream">
+    <svg viewBox="0 0 256 44" fill="none" style="width:170px;">
+      <circle cx="22" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+      <circle cx="46" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+      <circle cx="34" cy="22" r="4.8" fill="#3e1622"/>
+      <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#3e1622">Togeather Co</text>
+    </svg>
+    <div class="lbl">Monochrome · Dark</div>
+  </div>
+
+  <div class="logo-cell bg-dark">
+    <svg viewBox="0 0 256 44" fill="none" style="width:170px;">
+      <circle cx="22" cy="22" r="19" stroke="#fff" stroke-width="3.2"/>
+      <circle cx="46" cy="22" r="19" stroke="#fff" stroke-width="3.2"/>
+      <circle cx="34" cy="22" r="4.8" fill="#fff"/>
+      <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#fff">Togeather Co</text>
+    </svg>
+    <div class="lbl" style="color:rgba(255,255,255,.4);">Monochrome · White</div>
+  </div>
+
+  <div class="logo-cell bg-wine">
+    <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:60px;">
+      <circle cx="11" cy="11" r="9.5" stroke="#fff" stroke-width="1.8"/>
+      <circle cx="23" cy="11" r="9.5" stroke="#fff" stroke-width="1.8"/>
+      <circle cx="17" cy="11" r="2.6" fill="#fff"/>
+    </svg>
+    <div class="lbl" style="color:rgba(255,255,255,.4);">Mark · White</div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 5 — DO'S & DON'TS ════════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Logo System</div><h2>Do's &amp; Don'ts</h2></div>
+<div class="pad-t">
+
+  <div class="dd-grid">
+    <div class="do-box">
+      <div class="dd-hdr"><span>✓</span><span>Use on approved backgrounds</span></div>
+      <div class="dd-body" style="background:#1a0608;">
+        <svg viewBox="0 0 256 44" fill="none" style="width:170px;">
+          <circle cx="22" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+          <circle cx="46" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+          <circle cx="34" cy="22" r="4.8" fill="#d4b896"/>
+          <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#fff">To</text>
+          <text x="107" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#d4b896">geather Co</text>
+        </svg>
+      </div>
+    </div>
+    <div class="dont-box">
+      <div class="dd-hdr"><span>✗</span><span>Don't stretch or distort</span></div>
+      <div class="dd-body">
+        <div class="dont-ex">
+          <svg viewBox="0 0 256 44" fill="none" style="width:180px;height:22px;transform:scaleY(0.55);">
+            <circle cx="22" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+            <circle cx="46" cy="22" r="19" stroke="#3e1622" stroke-width="3.2"/>
+            <circle cx="34" cy="22" r="4.8" fill="#3e1622"/>
+            <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#3e1622">Togeather Co</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="do-box">
+      <div class="dd-hdr"><span>✓</span><span>Maintain clear space</span></div>
+      <div class="dd-body">
+        <div style="border:1.5px dashed var(--border);border-radius:8px;padding:22px 28px;display:inline-block;">
+          <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:48px;">
+            <circle cx="11" cy="11" r="9.5" stroke="#3e1622" stroke-width="1.8"/>
+            <circle cx="23" cy="11" r="9.5" stroke="#3e1622" stroke-width="1.8"/>
+            <circle cx="17" cy="11" r="2.6" fill="#3e1622"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="dont-box">
+      <div class="dd-hdr"><span>✗</span><span>Don't change the colours</span></div>
+      <div class="dd-body">
+        <div class="dont-ex">
+          <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:48px;">
+            <circle cx="11" cy="11" r="9.5" stroke="#e53e3e" stroke-width="1.8"/>
+            <circle cx="23" cy="11" r="9.5" stroke="#3182ce" stroke-width="1.8"/>
+            <circle cx="17" cy="11" r="2.6" fill="#48bb78"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="do-box">
+      <div class="dd-hdr"><span>✓</span><span>Use on photography overlays</span></div>
+      <div class="dd-body" style="background:linear-gradient(135deg,#5c2535,#7a3348);">
+        <svg viewBox="0 0 256 44" fill="none" style="width:150px;">
+          <circle cx="22" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+          <circle cx="46" cy="22" r="19" stroke="#d4b896" stroke-width="3.2"/>
+          <circle cx="34" cy="22" r="4.8" fill="#d4b896"/>
+          <text x="80" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#fff">To</text>
+          <text x="107" y="30" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#d4b896">geather Co</text>
+        </svg>
+      </div>
+    </div>
+    <div class="dont-box">
+      <div class="dd-hdr"><span>✗</span><span>Don't add drop shadows</span></div>
+      <div class="dd-body">
+        <div class="dont-ex" style="filter:drop-shadow(4px 4px 6px rgba(62,22,34,.6));">
+          <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:48px;">
+            <circle cx="11" cy="11" r="9.5" stroke="#3e1622" stroke-width="1.8"/>
+            <circle cx="23" cy="11" r="9.5" stroke="#3e1622" stroke-width="1.8"/>
+            <circle cx="17" cy="11" r="2.6" fill="#3e1622"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="row" style="gap:40px;">
+    <div class="col">
+      <div class="lbl" style="color:#2e7d52;">Always</div>
+      <ul style="margin-top:8px;padding-left:16px;font-size:12px;color:var(--text-mid);line-height:1.9;">
+        <li>Use provided SVG files for digital</li>
+        <li>Maintain mark-to-text proportion</li>
+        <li>Use on approved background colours</li>
+        <li>Scale proportionally from a corner</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="lbl" style="color:#c0392b;">Never</div>
+      <ul style="margin-top:8px;padding-left:16px;font-size:12px;color:var(--text-mid);line-height:1.9;">
+        <li>Rearrange logo elements</li>
+        <li>Outline or stroke the wordmark</li>
+        <li>Place on low-contrast backgrounds</li>
+        <li>Rotate, flip, or use below 80px wide</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 6 — COLOUR PALETTE ════════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Colour System</div><h2>Brand Palette</h2></div>
+<div class="pad-t">
+
+  <div class="pal-title">Primary — Wine &amp; Burgundy</div>
+  <div class="sw-row">
+    <div class="swatch"><div class="sw-c" style="background:#3e1622;"></div><div class="sw-i"><div class="sw-name">Deep Wine</div><div class="sw-hex">#3E1622</div><div class="sw-codes"><span class="sw-code">R62 G22 B34</span><span class="sw-code">C0 M65 Y45 K76</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#5c2535;"></div><div class="sw-i"><div class="sw-name">Wine Mid</div><div class="sw-hex">#5C2535</div><div class="sw-codes"><span class="sw-code">R92 G37 B53</span><span class="sw-code">C0 M60 Y42 K64</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#7a3348;"></div><div class="sw-i"><div class="sw-name">Wine Light</div><div class="sw-hex">#7A3348</div><div class="sw-codes"><span class="sw-code">R122 G51 B72</span><span class="sw-code">C0 M58 Y41 K52</span></div></div></div>
+  </div>
+
+  <div class="pal-title">Accent — Champagne &amp; Gold</div>
+  <div class="sw-row">
+    <div class="swatch"><div class="sw-c" style="background:#b8906a;"></div><div class="sw-i"><div class="sw-name">Champagne Dark</div><div class="sw-hex">#B8906A</div><div class="sw-codes"><span class="sw-code">R184 G144 B106</span><span class="sw-code">C0 M22 Y42 K28</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#d4b896;"></div><div class="sw-i"><div class="sw-name">Champagne</div><div class="sw-hex">#D4B896</div><div class="sw-codes"><span class="sw-code">R212 G184 B150</span><span class="sw-code">C0 M13 Y29 K17</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#efe0cc;"></div><div class="sw-i"><div class="sw-name">Champagne Light</div><div class="sw-hex">#EFE0CC</div><div class="sw-codes"><span class="sw-code">R239 G224 B204</span><span class="sw-code">C0 M6 Y15 K6</span></div></div></div>
+  </div>
+
+  <div class="pal-title">Secondary — Blush &amp; Rose</div>
+  <div class="sw-row">
+    <div class="swatch"><div class="sw-c" style="background:#e8a4a8;"></div><div class="sw-i"><div class="sw-name">Blush</div><div class="sw-hex">#E8A4A8</div><div class="sw-codes"><span class="sw-code">R232 G164 B168</span><span class="sw-code">C0 M29 Y28 K9</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#f5dfe0;"></div><div class="sw-i"><div class="sw-name">Blush Light</div><div class="sw-hex">#F5DFE0</div><div class="sw-codes"><span class="sw-code">R245 G223 B224</span><span class="sw-code">C0 M9 Y9 K4</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#fdf0f1;"></div><div class="sw-i"><div class="sw-name">Blush Pale</div><div class="sw-hex">#FDF0F1</div><div class="sw-codes"><span class="sw-code">R253 G240 B241</span><span class="sw-code">C0 M5 Y5 K1</span></div></div></div>
+  </div>
+
+  <div class="pal-title">Neutrals — Cream &amp; Text</div>
+  <div class="sw-row">
+    <div class="swatch"><div class="sw-c" style="background:#fdf6f0;border:1px solid #e8d5cc;"></div><div class="sw-i"><div class="sw-name">Warm Cream</div><div class="sw-hex">#FDF6F0</div><div class="sw-codes"><span class="sw-code">R253 G246 B240</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#2c1810;"></div><div class="sw-i"><div class="sw-name">Warm Dark</div><div class="sw-hex">#2C1810</div><div class="sw-codes"><span class="sw-code">R44 G24 B16</span></div></div></div>
+    <div class="swatch"><div class="sw-c" style="background:#a08080;"></div><div class="sw-i"><div class="sw-name">Muted Rose</div><div class="sw-hex">#A08080</div><div class="sw-codes"><span class="sw-code">R160 G128 B128</span></div></div></div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 7 — COLOUR GRADING ════════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Photography &amp; Content</div><h2>Colour Grading Guide</h2></div>
+<div class="pad-t">
+
+  <p style="font-size:12px;color:var(--text-mid);margin-bottom:20px;line-height:1.65;">All photography must follow these grading presets — warm, romantic, editorial. Never cold, oversaturated, or stock-photo in feel.</p>
+
+  <div class="grade-grid">
+    <div class="grade-card">
+      <div class="grade-prev" style="background:linear-gradient(160deg,#2a0a14,#5c2535,#c07080);">
+        <div class="grade-prev-overlay"><span class="grade-tag-sm">Preset A</span></div>
+      </div>
+      <div class="grade-info">
+        <h4>Rooftop Dusk</h4>
+        <div class="tone-strip" style="background:linear-gradient(90deg,#2a0a14,#5c2535,#c9956a,#efe0cc);"></div>
+        <p>Deep wine shadows, warm champagne highlights. Golden hour outdoor events.</p>
+        <div class="lr-settings"><strong style="color:var(--wine);">Lightroom</strong><br>Temp +10 · Tint +5 · Exp –0.3<br>Contrast +20 · Highlights –40 · Shadows +30</div>
+      </div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-prev" style="background:linear-gradient(160deg,#3a1e08,#8a5a30,#d4b896,#fdf6f0);">
+        <div class="grade-prev-overlay"><span class="grade-tag-sm">Preset B</span></div>
+      </div>
+      <div class="grade-info">
+        <h4>Candlelit Dinner</h4>
+        <div class="tone-strip" style="background:linear-gradient(90deg,#3a1e08,#8a5a30,#d4b896,#fdf6f0);"></div>
+        <p>Warm amber tones, soft creamy highlights. Indoor intimate settings.</p>
+        <div class="lr-settings"><strong style="color:var(--wine);">Lightroom</strong><br>Temp +25 · Tint +8 · Exp –0.1<br>Contrast +15 · Highlights –50 · Shadows +40</div>
+      </div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-prev" style="background:linear-gradient(160deg,#2a0814,#7a2040,#e8a4a8,#fdf0f1);">
+        <div class="grade-prev-overlay"><span class="grade-tag-sm">Preset C</span></div>
+      </div>
+      <div class="grade-info">
+        <h4>Blush Social</h4>
+        <div class="tone-strip" style="background:linear-gradient(90deg,#2a0814,#c07080,#e8a4a8,#fdf0f1);"></div>
+        <p>Soft rose haze on warm neutral base. Graphic and social content.</p>
+        <div class="lr-settings"><strong style="color:var(--wine);">Lightroom</strong><br>Temp +5 · Tint +15 · Exp 0<br>Contrast +10 · Highlights –30 · Shadows +20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="row" style="gap:40px;">
+    <div class="col">
+      <div class="lbl">Photo Subject Guidelines</div>
+      <ul style="margin-top:8px;padding-left:16px;font-size:12px;color:var(--text-mid);line-height:1.9;">
+        <li>Candid, genuine moments — never posed</li>
+        <li>Premium venue details (glassware, decor, skylines)</li>
+        <li>Soft bokeh backgrounds, selective focus</li>
+        <li>Warm ambient lighting preferred</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="lbl">What to Avoid</div>
+      <ul style="margin-top:8px;padding-left:16px;font-size:12px;color:var(--text-mid);line-height:1.9;">
+        <li>Cold / blue-toned images</li>
+        <li>High-saturation or garish filters</li>
+        <li>Stock photo aesthetic</li>
+        <li>Overexposed, washed-out images</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 8 — TYPOGRAPHY ════════════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Typography</div><h2>Type System</h2></div>
+<div class="pad-t">
+
+  <div class="row" style="margin-bottom:18px;gap:32px;">
+    <div class="col">
+      <div class="lbl">Primary — Display &amp; Headlines</div>
+      <div class="type-sample" style="margin-top:10px;">Find Your<br><em>Forever</em> Someone</div>
+      <p style="font-family:'Playfair Display',serif;font-size:16px;color:var(--wine);margin-top:10px;">Playfair Display</p>
+      <div style="display:flex;gap:14px;margin-top:6px;flex-wrap:wrap;">
+        <span style="font-family:'Playfair Display',serif;font-weight:400;font-size:12px;color:var(--text-mid);">Regular</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:600;font-size:12px;color:var(--text-mid);">SemiBold</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:12px;color:var(--text-mid);">Bold</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:400;font-style:italic;font-size:12px;color:var(--champ-dk);">Italic</span>
+      </div>
+    </div>
+    <div class="col" style="padding-left:20px;border-left:1px solid var(--border);">
+      <div class="lbl">Secondary — Body &amp; UI</div>
+      <p style="font-size:16px;font-weight:300;color:var(--text-mid);margin-top:10px;line-height:1.6;">Premium in-person matchmaking events for professionals who want something real.</p>
+      <p style="font-size:16px;color:var(--wine);margin-top:10px;">Inter</p>
+      <div style="display:flex;gap:14px;margin-top:6px;flex-wrap:wrap;">
+        <span style="font-weight:300;font-size:12px;color:var(--text-mid);">Light</span>
+        <span style="font-weight:400;font-size:12px;color:var(--text-mid);">Regular</span>
+        <span style="font-weight:500;font-size:12px;color:var(--text-mid);">Medium</span>
+        <span style="font-weight:600;font-size:12px;color:var(--text-mid);">SemiBold</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="lbl">Type Scale</div>
+  <div class="type-row"><div class="type-meta"><div class="lbl">H1 — Hero</div><small>Playfair 700 · 64–90px</small></div><div class="type-ex"><span style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--wine);">Find Your Forever Someone</span></div></div>
+  <div class="type-row"><div class="type-meta"><div class="lbl">H2 — Section</div><small>Playfair 700 · 40–52px</small></div><div class="type-ex"><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--wine);">How It Works</span></div></div>
+  <div class="type-row"><div class="type-meta"><div class="lbl">H3 — Card</div><small>Playfair 600 · 20–26px</small></div><div class="type-ex"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--wine);">Rooftop Mixers</span></div></div>
+  <div class="type-row"><div class="type-meta"><div class="lbl">Body Large</div><small>Inter 300 · 17–20px</small></div><div class="type-ex"><span style="font-size:14px;font-weight:300;color:var(--text-mid);">Premium in-person events for professionals seeking authentic connection.</span></div></div>
+  <div class="type-row"><div class="type-meta"><div class="lbl">Body</div><small>Inter 400 · 14–16px</small></div><div class="type-ex"><span style="font-size:13px;color:var(--text-mid);">Every member is reviewed before joining. Genuine people only.</span></div></div>
+  <div class="type-row"><div class="type-meta"><div class="lbl">Label / Tag</div><small>Inter 600 · 10–12px UC</small></div><div class="type-ex"><span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--champ-dk);">· Flagship Event ·</span></div></div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 9 — INSTAGRAM ═════════════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Social Media</div><h2>Instagram Guide</h2></div>
+<div class="pad-t">
+
+  <div class="lbl" style="margin-bottom:12px;">Post Formats &amp; Dimensions</div>
+  <div class="ig-grid" style="margin-bottom:18px;">
+
+    <div class="ig-card">
+      <div class="ig-prev" style="height:90px;">
+        <div class="ig-frame" style="width:72px;height:72px;border-radius:6px;">
+          <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:32px;"><circle cx="11" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/><circle cx="23" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/><circle cx="17" cy="11" r="2.6" fill="#d4b896"/></svg>
+        </div>
+      </div>
+      <div class="ig-info"><h4>Square Post</h4><p><strong>1080 × 1080 px</strong><br>Brand quotes, announcements, event teasers.</p></div>
+    </div>
+
+    <div class="ig-card">
+      <div class="ig-prev" style="height:90px;">
+        <div class="ig-frame" style="width:50px;height:88px;border-radius:6px;">
+          <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:24px;"><circle cx="11" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/><circle cx="23" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/><circle cx="17" cy="11" r="2.6" fill="#d4b896"/></svg>
+        </div>
+      </div>
+      <div class="ig-info"><h4>Story / Reel</h4><p><strong>1080 × 1920 px</strong><br>BTS, countdowns, testimonials. Safe zone: 250px T&amp;B.</p></div>
+    </div>
+
+    <div class="ig-card">
+      <div class="ig-prev" style="height:90px;">
+        <div class="ig-frame" style="width:90px;height:67px;border-radius:6px;">
+          <svg viewBox="-1.5 -1.5 37 25" fill="none" style="width:36px;"><circle cx="11" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/><circle cx="23" cy="11" r="9.5" stroke="#d4b896" stroke-width="1.8"/><circle cx="17" cy="11" r="2.6" fill="#d4b896"/></svg>
+        </div>
+      </div>
+      <div class="ig-info"><h4>Landscape</h4><p><strong>1080 × 566 px</strong><br>Venue reveals, event recaps, cityscape shots.</p></div>
+    </div>
+
+  </div>
+
+  <div class="div"></div>
+
+  <div class="row" style="gap:36px;margin-bottom:16px;">
+    <div class="col">
+      <div class="lbl">Content Pillars</div>
+      <ul style="margin-top:8px;padding-left:16px;font-size:12px;color:var(--text-mid);line-height:2;">
+        <li><strong style="color:var(--wine);">Event Teasers</strong> — venue reveals, date announcements</li>
+        <li><strong style="color:var(--wine);">Behind the Scenes</strong> — setup, styling, team moments</li>
+        <li><strong style="color:var(--wine);">Member Stories</strong> — anonymous testimonials, quotes</li>
+        <li><strong style="color:var(--wine);">Brand Values</strong> — mission-led editorial captions</li>
+        <li><strong style="color:var(--wine);">GTA Lifestyle</strong> — city content, venues, atmosphere</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="lbl">Caption Style</div>
+      <div style="margin-top:8px;background:var(--cream);border-radius:8px;padding:12px 14px;border:1px solid var(--border);font-size:11px;color:var(--text-mid);line-height:1.7;">
+        <p style="font-style:italic;color:var(--wine);margin-bottom:6px;">"No swiping. No algorithms.<br>Just the right room, the right people."</p>
+        <p>Our next rooftop mixer is coming to Toronto this summer. Join the waitlist for exclusive early access.</p>
+        <p style="margin-top:6px;color:var(--muted);">🔗 Link in bio · #TogeatherCo</p>
+      </div>
+      <p style="font-size:10px;color:var(--muted);margin-top:8px;">Keep captions under 150 words. Lead with emotion, close with CTA.</p>
+    </div>
+  </div>
+
+  <div class="lbl">Core Hashtags</div>
+  <div class="hashtags">
+    <span class="hashtag">#TogeatherCo</span><span class="hashtag">#TogeatherEvents</span>
+    <span class="hashtag">#TorontoMatchmaking</span><span class="hashtag">#GTAEvents</span>
+    <span class="hashtag">#RooftopMixer</span><span class="hashtag">#PremiumDating</span>
+    <span class="hashtag">#TorontoDating</span><span class="hashtag">#CuratedConnections</span>
+    <span class="hashtag">#TorontoSingles</span><span class="hashtag">#LuxuryEvents</span>
+    <span class="hashtag">#MindfulDating</span><span class="hashtag">#AuthenticConnection</span>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PAGE 10 — CANVA QUICK-START ════════════════════ -->
+<div class="page">
+<div class="section-hdr"><div class="tag">Design Tools</div><h2>Canva Quick-Start</h2></div>
+<div class="pad-t">
+
+  <div class="row" style="gap:28px;margin-bottom:18px;">
+    <div class="col">
+      <div class="lbl">Setting Up Your Brand Kit</div>
+      <ol style="margin-top:10px;padding-left:18px;font-size:12px;color:var(--text-mid);line-height:2.1;">
+        <li>Open Canva → Brand Kit (sidebar)</li>
+        <li>Upload logo SVGs from <code style="background:var(--cream);padding:1px 5px;border-radius:3px;font-size:10px;">brand/logos/</code></li>
+        <li>Add all brand colours using hex codes (page 6)</li>
+        <li>Set Playfair Display as heading font</li>
+        <li>Set Inter as body font</li>
+        <li>Save kit as "Togeather Co — Brand Kit"</li>
+      </ol>
+    </div>
+    <div class="col">
+      <div class="lbl">Which Logo File to Use</div>
+      <table class="file-table" style="margin-top:10px;">
+        <thead><tr><th>File</th><th>Use When</th></tr></thead>
+        <tbody>
+          <tr><td>logo-horizontal-dark-bg.svg</td><td>Dark / wine backgrounds</td></tr>
+          <tr><td>logo-horizontal-light-bg.svg</td><td>Cream / white backgrounds</td></tr>
+          <tr><td>logo-icon-on-wine.svg</td><td>Profile picture, avatar</td></tr>
+          <tr><td>logo-mark-champagne.svg</td><td>Watermark on photos</td></tr>
+          <tr><td>logo-monochrome-white.svg</td><td>Single-colour / print</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="lbl" style="margin-bottom:12px;">Colour Hex — Quick Reference</div>
+  <div class="clr-grid">
+    <div class="clr-cell"><div class="clr-swatch" style="background:#3e1622;"></div><div class="clr-name">Deep Wine</div><div class="clr-hex">#3E1622</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#d4b896;"></div><div class="clr-name">Champagne</div><div class="clr-hex">#D4B896</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#e8a4a8;"></div><div class="clr-name">Blush</div><div class="clr-hex">#E8A4A8</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#fdf6f0;border:1px solid #e8d5cc;"></div><div class="clr-name">Warm Cream</div><div class="clr-hex">#FDF6F0</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#b8906a;"></div><div class="clr-name">Champ Dark</div><div class="clr-hex">#B8906A</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#5c2535;"></div><div class="clr-name">Wine Mid</div><div class="clr-hex">#5C2535</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#f5dfe0;"></div><div class="clr-name">Blush Light</div><div class="clr-hex">#F5DFE0</div></div>
+    <div class="clr-cell"><div class="clr-swatch" style="background:#2c1810;"></div><div class="clr-name">Warm Text</div><div class="clr-hex">#2C1810</div></div>
+  </div>
+
+  <div style="margin-top:18px;background:linear-gradient(135deg,#3e1622,#5c2535);border-radius:10px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <p style="font-size:12px;font-weight:600;color:var(--champ);margin-bottom:3px;">Questions or approvals?</p>
+      <p style="font-size:11px;color:rgba(255,255,255,.45);">Reach out to the brand team for templates and assets.</p>
+    </div>
+    <div style="font-size:12px;color:rgba(212,184,150,.85);font-weight:500;">togeatherco@gmail.com</div>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>

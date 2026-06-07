@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Togeather Co icon">
+  <!-- Cream background circle (for light contexts) -->
+  <rect width="80" height="80" rx="20" fill="#fdf6f0"/>
+  <circle cx="29" cy="40" r="17"  stroke="#3e1622" stroke-width="2.4" fill="none"/>
+  <circle cx="51" cy="40" r="17"  stroke="#3e1622" stroke-width="2.4" fill="none"/>
+  <circle cx="40" cy="40" r="4.2" fill="#3e1622"/>
+</svg>

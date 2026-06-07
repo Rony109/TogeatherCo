@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 82" fill="none" role="img" aria-label="Togeather Co">
+  <circle cx="43" cy="22" r="19"  stroke="#3e1622" stroke-width="3.2"/>
+  <circle cx="77" cy="22" r="19"  stroke="#3e1622" stroke-width="3.2"/>
+  <circle cx="60" cy="22" r="4.8" fill="#3e1622"/>
+  <text x="60" y="58"
+        font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+        font-size="18" font-weight="700" letter-spacing="-0.2"
+        text-anchor="middle" fill="#3e1622">To</text>
+  <text x="60" y="78"
+        font-family="Georgia, 'Playfair Display', 'Times New Roman', serif"
+        font-size="18" font-weight="700" letter-spacing="-0.2"
+        text-anchor="middle" fill="#b8906a">geather Co</text>
+</svg>
