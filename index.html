@@ -437,6 +437,23 @@
     @keyframes popIn    { from{transform:scale(.5);opacity:0} 70%{transform:scale(1.15)} to{transform:scale(1);opacity:1} }
     @keyframes confettiFall { 0%{transform:translateY(-10vh) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(720deg);opacity:0} }
 
+    /* ── Moon ──────────────────────────────────────── */
+    .hero-moon {
+      position:absolute; top:clamp(72px,11vw,108px); right:clamp(36px,7vw,90px);
+      width:clamp(46px,6.5vw,76px); height:clamp(46px,6.5vw,76px);
+      z-index:5; pointer-events:none;
+      animation:moonGlow 5s ease-in-out infinite alternate;
+      filter:drop-shadow(0 0 10px rgba(212,184,150,.22));
+    }
+    @keyframes moonGlow {
+      from { opacity:.6; filter:drop-shadow(0 0 8px rgba(212,184,150,.18)); }
+      to   { opacity:.9; filter:drop-shadow(0 0 22px rgba(212,184,150,.55)); }
+    }
+
+    @media(max-width:600px){
+      .hero-moon { width:38px; height:38px; top:68px; right:18px; }
+    }
+
     /* ══ RESPONSIVE ══════════════════════════════════ */
 
     /* Desktop (>= 1024px) — already handled by auto-fill grids */
@@ -513,6 +530,27 @@
   <div class="sp" style="top:42%;left:52%;--dur:5.5s;--sz:7px;--del:3s" aria-hidden="true">◆</div>
   <div class="sp" style="top:15%;left:35%;--dur:8s;--sz:9px;--del:1.5s" aria-hidden="true">✦</div>
   <div class="sp" style="top:80%;left:30%;--dur:6s;--sz:10px;--del:2.8s" aria-hidden="true">◆</div>
+  <!-- Crescent moon -->
+  <div class="hero-moon" aria-hidden="true">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <mask id="moonMask">
+          <rect width="100" height="100" fill="white"/>
+          <circle cx="66" cy="43" r="33" fill="black"/>
+        </mask>
+      </defs>
+      <!-- soft outer aura rings -->
+      <circle cx="50" cy="50" r="45" fill="rgba(212,184,150,.04)"/>
+      <circle cx="50" cy="50" r="40" fill="rgba(212,184,150,.06)"/>
+      <!-- crescent body -->
+      <circle cx="50" cy="50" r="35" fill="#d4b896" mask="url(#moonMask)"/>
+      <!-- subtle crater details -->
+      <circle cx="38" cy="44" r="3" fill="rgba(184,144,106,.35)" mask="url(#moonMask)"/>
+      <circle cx="45" cy="56" r="2" fill="rgba(184,144,106,.25)" mask="url(#moonMask)"/>
+      <circle cx="32" cy="53" r="1.5" fill="rgba(184,144,106,.2)" mask="url(#moonMask)"/>
+    </svg>
+  </div>
+
   <!-- particle + shooting star canvas -->
   <canvas id="heroCanvas" aria-hidden="true"></canvas>
 
@@ -945,11 +983,128 @@
     ctx.fill();
   }
 
+  // ── CONSTELLATIONS ──────────────────────────────────────────────
+  // Positions are relative (0–1) to canvas dimensions.
+  // Romantic / mythological theme: love, beauty, the moon, music.
+  const CONSTELL = [
+    {
+      // Corona Borealis — crown of Ariadne, given by Dionysus as a love token
+      col: [212, 184, 150],
+      pts: [[.68,.05],[.72,.035],[.76,.025],[.80,.035],[.84,.05],[.87,.08],[.90,.115]],
+      edges: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]],
+      phase: 0.0,
+    },
+    {
+      // Gemini — The Twins, hands reaching toward each other (connection)
+      col: [232, 164, 168],
+      pts: [
+        [.04,.24],[.07,.19],[.10,.24],[.07,.31],[.05,.37],[.09,.37],  // left twin
+        [.16,.24],[.13,.19],[.10,.24],[.13,.31],[.11,.37],[.15,.37]   // right twin
+      ],
+      edges: [[0,1],[1,2],[2,3],[3,4],[3,5],   // left body
+               [6,7],[7,8],[8,9],[9,10],[9,11], // right body
+               [1,7]],                           // hands clasped
+      phase: 1.4,
+    },
+    {
+      // Heart — custom romantic constellation
+      col: [245, 223, 224],
+      pts: [
+        [.28,.57],[.25,.54],[.21,.54],[.19,.57],[.20,.61],
+        [.28,.66],[.36,.61],[.37,.57],[.35,.54],[.31,.54]
+      ],
+      edges: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,0]],
+      phase: 2.3,
+    },
+    {
+      // Lyra — Orpheus's lyre, symbol of love that transcends death
+      col: [212, 184, 150],
+      pts: [
+        [.86,.55],          // Vega — brightest star in the constellation
+        [.82,.62],[.86,.645],[.90,.62],
+        [.82,.71],[.90,.71]
+      ],
+      edges: [[0,1],[0,2],[0,3],[1,2],[2,3],[1,4],[3,5],[4,5]],
+      phase: 0.8,
+      brightest: 0,
+    },
+    {
+      // Cassiopeia — Queen of love and beauty, the W in the sky
+      col: [245, 223, 224],
+      pts: [[.09,.73],[.15,.69],[.21,.73],[.27,.68],[.33,.71]],
+      edges: [[0,1],[1,2],[2,3],[3,4]],
+      phase: 1.9,
+    },
+  ];
+
+  function drawConstell(t) {
+    CONSTELL.forEach(c => {
+      const baseA = 0.22 + 0.12 * Math.sin(t * 0.22 + c.phase);
+      const pts   = c.pts.map(([rx, ry]) => [rx * canvas.width, ry * canvas.height]);
+      const [r, g, b] = c.col;
+      const glow = `rgba(${r},${g},${b},`;
+
+      // Constellation lines — thin dashed, slowly drifting
+      ctx.save();
+      ctx.strokeStyle = glow + (baseA * 0.5) + ')';
+      ctx.lineWidth   = 0.65;
+      ctx.setLineDash([4, 11]);
+      ctx.lineDashOffset = (t * 6) % 30;  // slow marching effect
+      ctx.beginPath();
+      c.edges.forEach(([a, bi]) => {
+        ctx.moveTo(pts[a][0], pts[a][1]);
+        ctx.lineTo(pts[bi][0], pts[bi][1]);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      // Constellation stars — glowing points with warm halos
+      pts.forEach((pt, i) => {
+        const sa       = baseA + 0.2 * Math.sin(t * 1.1 + c.phase + i * 0.85);
+        const isBright = c.brightest === i;
+        const radius   = isBright ? 2.4 : 1.5;
+
+        // Soft halo
+        const halo = ctx.createRadialGradient(pt[0], pt[1], 0, pt[0], pt[1], radius * 6);
+        halo.addColorStop(0, glow + sa * 0.8 + ')');
+        halo.addColorStop(1, glow + '0)');
+        ctx.beginPath();
+        ctx.arc(pt[0], pt[1], radius * 6, 0, Math.PI * 2);
+        ctx.fillStyle = halo;
+        ctx.fill();
+
+        // Bright core
+        ctx.beginPath();
+        ctx.arc(pt[0], pt[1], radius, 0, Math.PI * 2);
+        ctx.fillStyle = glow + Math.min(0.95, sa * 2.5) + ')';
+        ctx.fill();
+
+        // 4-point star sparkle on the brightest star
+        if (isBright) {
+          ctx.save();
+          ctx.globalAlpha = sa * 0.6;
+          ctx.strokeStyle = glow + '0.9)';
+          ctx.lineWidth   = 0.6;
+          const s = radius * 4;
+          ctx.beginPath();
+          ctx.moveTo(pt[0] - s, pt[1]); ctx.lineTo(pt[0] + s, pt[1]);
+          ctx.moveTo(pt[0], pt[1] - s); ctx.lineTo(pt[0], pt[1] + s);
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+    });
+  }
+
   let raf;
   function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const now = Date.now();
     const t   = now * 0.001;
+
+    // Constellations drawn first — behind everything else
+    drawConstell(t);
 
     // twinkling stars
     twinklers.forEach(s => {
